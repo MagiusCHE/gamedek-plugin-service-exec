@@ -1,2 +1,2 @@
 # service.exec
-Gamedek plugin
+Gamedek plugin provides spawn or exec functionality.

@@ -1,130 +1,13 @@
 {
   "name": "it.magius.gamedek.plugin.service.exec",
   "version": "1.0.0",
-  "description": "Gamedek Module",
+  "description": "Gamedek plugin provides spawn or exec functionality.",
   "main": "plugin.js",
   "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
-  "private": false
-}
-{
-  "name": "it.magius.gamedek.plugin.service.exec",
-  "version": "1.0.0",
-  "description": "Gamedek Module",
-  "main": "plugin.js",
-  "repository": "https://github.com/MagiusCHE/gamedek-plugin-service-exec.git",
-      "author": {
-        "name": "Magius(CHE)",
-        "email": "magiusche@magius.it"
-      },
-  "license": "GNU GPL",
+  "author": {
+    "name": "Magius(CHE)",
+    "email": "magiusche@magius.it"
+  },
+  "license": "GPL-3.0-or-later",
   "private": false
 }
