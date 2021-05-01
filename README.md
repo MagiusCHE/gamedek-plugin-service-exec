@@ -1,0 +1,2 @@
+# service.exec
+Gamedek plugin
