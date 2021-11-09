@@ -129,6 +129,10 @@ class myplugin extends global.Plugin {
 
             let exec
             try {
+                this.log('Spawn file:')
+                this.log(' - %s', args.executable)
+                this.log(' - %s', separatedargs)
+                this.log(' - %s', args)
                 exec = spawn(
                     args.executable
                     , separatedargs
