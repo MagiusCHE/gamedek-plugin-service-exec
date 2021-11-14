@@ -122,10 +122,17 @@ class myplugin extends global.Plugin {
                 kernel.sendEvent('binExecutonTerminated', pid)
             }
 
-            const separatedargs = (args.arguments && Array.isArray(args.arguments))
+            let separatedargs = (args.arguments && Array.isArray(args.arguments))
                 ? args.arguments
                 : (args.arguments != "" ? args.arguments.match(/"[^"]+"|'[^']+'|\S+/g) : [])
             //separatedargs = game.props.executable.arguments.split(' ')
+
+            separatedargs = separatedargs.map(e => {
+                if (e.indexOf('"') == 0 && e.substr(e.length - 1, 1) == '"') {
+                    return e.substr(1).substr(0,e.length-2)
+                }
+                return e
+            })
 
             let exec
             try {
