@@ -60,6 +60,7 @@ class myplugin extends global.Plugin {
         return new Promise(async (resolve) => {
             const log = []
             const err = []
+            const std = []
             let startupFinalize = async (child, error) => {
                 const pid = child?.pid
                 startupFinalize = () => { }
@@ -73,7 +74,8 @@ class myplugin extends global.Plugin {
                 returns.pid = pid
                 returns.exit = {
                     log: log.join('\n'),
-                    err: err.join('\n')
+                    err: err.join('\n'),
+                    std: std.join('\n')
                 }
 
                 if (error) {
@@ -106,7 +108,8 @@ class myplugin extends global.Plugin {
                 returns.exit = {
                     code: code,
                     log: log.join('\n'),
-                    err: err.join('\n')
+                    err: err.join('\n'),
+                    std: std.join('\n')
                 }
 
                 if (error) {
@@ -159,14 +162,29 @@ class myplugin extends global.Plugin {
                 startupFinalize(exec, er)
             })
 
+            exec.stdout.setEncoding('utf8');
             exec.stdout.on("data", (data) => {
-                log.push(data)
+                let str = data?.toString()
+                if (str.endsWith('\r\n'))
+                    str = str.substr(0, str.length - 2)
+                else if (str.endsWith('\n'))
+                    str = str.substr(0, str.length - 1)
+                this.log(str)
+                std.push(str)
+                log.push(str)
             });
 
+            exec.stderr.setEncoding('utf8');
             exec.stderr.on("data", (er) => {
                 // Handle error...
-                log.push(er)
-                err.push(er)
+                let str = er?.toString()
+                if (str.endsWith('\r\n'))
+                    str = str.substr(0, str.length - 2)
+                else if (str.endsWith('\n'))
+                        str = str.substr(0, str.length - 1)
+                this.logError(str)
+                err.push(str)
+                log.push(str)
             });
 
             exec.on("exit", (code) => {
