@@ -1,4 +1,5 @@
 const fs = require("fs")
+const path = require("path")
 const spawn = require("child_process").spawn;
 
 class myplugin extends global.Plugin {
@@ -9,6 +10,33 @@ class myplugin extends global.Plugin {
         await super.init()
     }
     #activebin = {}
+
+    #resolveExecutablePath(executable, env) {
+        if (typeof executable !== 'string' || executable.length === 0) {
+            return
+        }
+        try {
+            if (fs.existsSync(executable) && fs.statSync(executable).isFile()) {
+                return executable
+            }
+        } catch { }
+
+        const envPath = (env && (env.PATH || env.Path || env.path)) || process.env.PATH
+        const hasSeparator = executable.includes('/') || executable.includes('\\')
+        if (!envPath || hasSeparator) {
+            return
+        }
+
+        const locations = envPath.split(path.delimiter).filter(Boolean)
+        for (const location of locations) {
+            const candidate = path.join(location, executable)
+            try {
+                if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+                    return candidate
+                }
+            } catch { }
+        }
+    }
     async forceCloseBinByPid(pid, signal) {
         this.log('forceCloseBinByPid: close process with pid %o', pid)
         if (this.#activebin[pid]) {
@@ -139,12 +167,18 @@ class myplugin extends global.Plugin {
 
             let exec
             try {
+                const resolvedExecutable = this.#resolveExecutablePath(args.executable, args.env)
+                if (resolvedExecutable && resolvedExecutable !== args.executable) {
+                    this.log('Resolved executable "%s" to "%s" via PATH', args.executable, resolvedExecutable)
+                }
+                const executablePath = resolvedExecutable || args.executable
+
                 this.log('Spawn file:')
-                this.log(' - %s', args.executable)
+                this.log(' - %s', executablePath)
                 this.log(' - %s', separatedargs)
                 this.log(' - %s', args)
                 exec = spawn(
-                    args.executable
+                    executablePath
                     , separatedargs
                     , {
                         ...{
@@ -238,7 +272,8 @@ class myplugin extends global.Plugin {
             returns.tab = 'executable'
             returns.item = 'executable'
         }
-        if (!fs.existsSync(props.executable.executable) || !fs.statSync(props.executable.executable).isFile()) {
+        const resolvedExecutable = this.#resolveExecutablePath(props.executable.executable, props.system?.env)
+        if (!resolvedExecutable) {
             returns.error = {
                 title: await kernel.translateBlock('${lang.ge_com_filenotfound_title}'),
                 message: await kernel.translateBlock('${lang.ge_com_filenotfound "' + await kernel.translateBlock('${lang.ge_il_info_binary}') + '" "' + props.executable.executable + '"}'),
